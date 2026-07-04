@@ -24,8 +24,10 @@ A single source of truth for the "boring" (but vital) stuff. 😮
 
 A place to centralize your templates and everything else that fits in the GitHub folder!
 
-✅ Centralized templates: Update once, deploy everywhere.
-✅ AI Protocols: Keeping Copilot and Skills in sync.
-🙏 Sanity preserved: No more manual copy-pasting.
+✅ **Centralized templates**: Update once, deploy everywhere.  
+✅ **AI Protocols**: Keeping Copilot and Skills in sync.  
+🙏 **Sanity preserved**: No more manual copy-pasting.  
 
 ### The content
+
+coming soon...
