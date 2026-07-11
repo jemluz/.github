@@ -181,3 +181,43 @@ Sub-issue PR (`sub-issue branch -> parent branch`):
 - [ ] PR references related issue/sub-issue.
 - [ ] PR description starts referencing related issue/sub-issue with `more details at #__`.
 - [ ] Merge strategy is squash.
+
+## 🤖 AI Skill Execution Flow
+
+Run skills in this exact order:
+
+`current-opened-check -> issue-create -> branch-commit-pattern -> pr-create -> workflow-validate`
+
+Deterministic rules:
+
+1. `current-opened-check` is mandatory and must run first.
+2. `current-opened-check` must search open parent issues and sub-issues using default semantic matching over title + body.
+3. If related issue/sub-issue is found, classify confidence (`high`, `medium`, `low`) and ask user to reuse existing or create new.
+4. If user reuses existing issue/sub-issue, skip `issue-create` and carry selected context to remaining skills.
+5. `issue-create` applies only when creating a new issue/sub-issue and must enforce title and milestone policies from this workflow.
+
+### Small Examples
+
+1. Related issue found path
+   - Input: "Improve timeline keyboard navigation"
+   - `current-opened-check` finds open `#86 [REPO-00086] Timeline improvements` with `high` confidence.
+   - User chooses reuse -> skip `issue-create` -> continue with `branch-commit-pattern`.
+
+2. No related issue path
+   - `current-opened-check` returns `no-related-found`.
+   - Continue to `issue-create` and create parent issue `[REPO-00120] Timeline keyboard navigation`.
+
+3. Parent issue flow
+   - Branch: `feat/REPO-00120`
+   - Commit: `feat(I120): add keyboard arrow support`
+   - PR: `[REPO-00120] Timeline keyboard navigation (PR #45)` -> base `dev`
+   - PR body first line: `more details at #120`
+   - Milestone: allowed.
+
+4. Sub-issue flow
+   - Parent issue `#120`, sub-issue `#121`.
+   - Branch: `feat/REPO-00120__SUB-121`
+   - Commit: `feat(I120_S121): add docs for keyboard shortcuts`
+   - PR: `[REPO-00120][SUB-121] Keyboard shortcut docs (PR #46)` -> base `feat/REPO-00120`
+   - PR body first line: `more details at #121`
+   - Milestone: forbidden.
