@@ -27,4 +27,13 @@ _table with instructions files links_
 
 ## Skills
 
-_table with skills files links + xml_
+| Skill | Purpose | File |
+| --- | --- | --- |
+| `issue-to-implementation-plan` | Converts GitHub issues into actionable implementation plans with scope, phases, risks, and validation criteria. | [./skills/issue-to-implementation-plan/SKILL.md](./skills/issue-to-implementation-plan/SKILL.md) |
+
+```xml
+<skill>
+  <name>issue-to-implementation-plan</name>
+  <description>Use when the user asks to analyze a GitHub issue and convert it into an actionable implementation plan with explicit scope, phased tasks, risks, and validation criteria.</description>
+</skill>
+```
