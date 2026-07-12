@@ -9,6 +9,13 @@ Find related open parent issues and sub-issues before creating a new one.
 - Problem statement from user request.
 - Open issues dataset (parent + sub-issue candidates).
 
+## Parent/child discovery update
+
+Search strategy must include:
+1. Open parent issues.
+2. Existing native sub-issues under candidate parents.
+3. Existing checklist-linked children in parent body (fallback mode).
+
 ## Deterministic Steps
 
 1. Search open parent issues and open sub-issues.
