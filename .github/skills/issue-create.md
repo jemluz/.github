@@ -17,6 +17,15 @@ Create a new parent issue or sub-issue only when `current-opened-check` does not
    - set milestone for parent issue;
    - never set milestone for sub-issue.
 
+## Native sub-issue linking (required for sub-issue)
+
+When `issue_type = sub-issue`:
+1. Create child issue.
+2. Resolve GraphQL node IDs for parent and child.
+3. Execute GraphQL mutation `addSubIssue` to link child under parent.
+4. On failure, write fallback checklist item in parent body:
+   - `- [ ] #<child_number> <child_title>`
+
 ## Output Contract
 
 - `issue_type`: `parent` or `sub-issue`
@@ -24,3 +33,6 @@ Create a new parent issue or sub-issue only when `current-opened-check` does not
 - `issue_title`
 - `parent_issue_number` (required for sub-issue)
 - `milestone_applied`: `true` (parent) or `false` (sub-issue)
+- `relationship_mode`: `native-subissue` | `tasklist-fallback`
+- `relationship_linked`: `true` | `false`
+- `relationship_error`: short string or `null`
